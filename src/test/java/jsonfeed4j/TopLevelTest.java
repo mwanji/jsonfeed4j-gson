@@ -17,7 +17,7 @@ import jsonfeed4j.JsonFeed;
 import jsonfeed4j.Versions;
 import jsonfeed4j.gson.GsonJsonFeedReader;
 
-public class JsonFeed_TopLevel_Test {
+public class TopLevelTest {
 
   @Test
   public void should_read_minimal_valid_feed_with_no_items() {
@@ -104,19 +104,7 @@ public class JsonFeed_TopLevel_Test {
     assertEquals(Arrays.asList("alex", "brian", "cathy"), users);
   }
   
-  public static void main(String[] args) throws IOException {
-    JsonFeed jsonFeed = new JsonFeed_TopLevel_Test().feed2("extensions");
-    System.out.println(jsonFeed.getExtension("colors"));
-  }
-  
   private JsonFeed feed(String feed) {
     return new GsonJsonFeedReader().read(this.getClass().getResourceAsStream("/topLevel/" + feed + ".json"));
-  }
-  
-  public JsonFeed feed2(String feed) throws IOException {
-    try (FileInputStream fis = new FileInputStream(Paths.get("src", "test", "resources", "topLevel", feed + ".json").toAbsolutePath().toFile())) {
-      return new GsonJsonFeedReader().read(fis);
-    }
-    
   }
 }
