@@ -19,7 +19,7 @@ public class TopLevelTest {
   public void should_read_minimal_valid_feed_with_no_items() {
     JsonFeed jsonFeed = feed("minimal");
     
-    assertEquals(Versions.VERSION_1, jsonFeed.getVersion());
+    assertEquals(Version.VERSION_1, jsonFeed.getVersion());
     assertEquals("My Test Feed", jsonFeed.getTitle());
     assertTrue(jsonFeed.getItems().isEmpty(), "Items should be an empty collection");
   }

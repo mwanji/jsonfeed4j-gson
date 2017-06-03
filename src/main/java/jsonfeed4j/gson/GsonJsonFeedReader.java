@@ -22,12 +22,12 @@ import com.google.gson.JsonParser;
 
 import jsonfeed4j.JsonFeed;
 import jsonfeed4j.JsonFeedReader;
-import jsonfeed4j.Versions;
+import jsonfeed4j.Version;
 
 public class GsonJsonFeedReader implements JsonFeedReader {
   
   private final Gson gson = new GsonBuilder()
-      .registerTypeAdapter(Versions.class, new VersionsDeserializer())
+      .registerTypeAdapter(Version.class, new VersionDeserializer())
       .registerTypeAdapter(ZonedDateTime.class, new ZonedDateTimeDeserializer())
       .registerTypeAdapter(MimeType.class, new MimeTypeDeserializer())
       .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
@@ -84,10 +84,10 @@ public class GsonJsonFeedReader implements JsonFeedReader {
     return output;
   }
 
-  private static class VersionsDeserializer implements JsonDeserializer<Versions> {
+  private static class VersionDeserializer implements JsonDeserializer<Version> {
     @Override
-    public Versions deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
-      return Versions.fromUrl(json.getAsString());
+    public Version deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+      return Version.fromUrl(json.getAsString());
     }
   }
   
