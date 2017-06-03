@@ -1,0 +1,37 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "My Test Feed",
+    "items": [
+        {
+            "id": "http://moandjiezana.com/1",
+            "content_text": "Some text",
+            "attachments": [
+                {
+                    "url": "http://moandjiezana.com/1/attachments/full",
+                    "mime_type": "audio/mpeg",
+                    "title": "Title 1",
+                    "size_in_bytes": 12345678,
+                    "duration_in_seconds": 120
+                },
+                {
+                    "url": "http://moandjiezana.com/1/attachments/minimal",
+                    "mime_type": "audio/mpeg"
+                },
+                {
+                    "url": "http://moandjiezana.com/1/attachments/extensions",
+                    "mime_type": "audio/mpeg",
+                    "_colors": {
+                        "background": "red",
+                        "text": "blue"
+                    },
+                    "_users": ["alex", "brian", "cathy"],
+                    "_pluginPath": "a/b/c"
+                }
+            ]
+        },
+        {
+            "id": "http://moandjiezana.com/2",
+            "content_text": "Some text 2"
+        }
+    ]
+}

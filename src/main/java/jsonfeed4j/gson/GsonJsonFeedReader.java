@@ -6,6 +6,9 @@ import java.lang.reflect.Type;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
+import javax.activation.MimeType;
+import javax.activation.MimeTypeParseException;
+
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -26,6 +29,7 @@ public class GsonJsonFeedReader implements JsonFeedReader {
   private final Gson gson = new GsonBuilder()
       .registerTypeAdapter(Versions.class, new VersionsDeserializer())
       .registerTypeAdapter(ZonedDateTime.class, new ZonedDateTimeDeserializer())
+      .registerTypeAdapter(MimeType.class, new MimeTypeDeserializer())
       .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
       .create();
   
@@ -81,7 +85,6 @@ public class GsonJsonFeedReader implements JsonFeedReader {
   }
 
   private static class VersionsDeserializer implements JsonDeserializer<Versions> {
-
     @Override
     public Versions deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
       return Versions.fromUrl(json.getAsString());
@@ -89,10 +92,20 @@ public class GsonJsonFeedReader implements JsonFeedReader {
   }
   
   private static class ZonedDateTimeDeserializer implements JsonDeserializer<ZonedDateTime> {
-    
     @Override
     public ZonedDateTime deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
       return ZonedDateTime.from(DateTimeFormatter.ISO_DATE_TIME.parse(json.getAsString()));
+    }
+  }
+  
+  private static class MimeTypeDeserializer implements JsonDeserializer<MimeType> {
+    @Override
+    public MimeType deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+      try {
+        return new MimeType(json.getAsString());
+      } catch (MimeTypeParseException e) {
+        throw new RuntimeException(e);
+      }
     }
   }
 }
