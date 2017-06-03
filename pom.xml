@@ -25,6 +25,12 @@
       <version>5.0.0-M4</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-validator</artifactId>
+      <version>4.3.1.Final</version>
+      <scope>test</scope>
+    </dependency>
 	</dependencies>
   <build>
     <plugins>

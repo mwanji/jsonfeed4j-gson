@@ -1,0 +1,48 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "My Test Feed",
+    "items": [
+        {
+            "id": "http://moandjiezana.com/invalid",
+            "content_text": "Some text",
+            "author": {}
+        },
+        {
+            "id": "http://moandjiezana.com/full",
+            "content_text": "Some text",
+            "author": {
+                "name": "Moandji",
+                "url": "http://www.moandjiezana.com",
+                "avatar": "http://www.moandjiezana.com/avatar.jpg"
+            }
+        },
+        {
+            "id": "http://moandjiezana.com/name",
+            "content_html": "<h1>Some HTML</h1>",
+            "author": {
+                "name": "Moandji"
+            }
+        },
+        {
+            "id": "http://moandjiezana.com/url",
+            "content_text": "Some text",
+            "content_html": "<h1>Some HTML</h1>",
+            "author": {
+                "url": "http://www.moandjiezana.com"
+            }
+        },
+        {
+            "id": "http://moandjiezana.com/avatar",
+            "content_text": "Some text",
+            "author": {
+                "name": "Moandji",
+                "url": "http://www.moandjiezana.com",
+                "avatar": "http://www.moandjiezana.com/avatar.jpg"
+            }
+        },
+        {
+            "id": "http://moandjiezana.com/none",
+            "content_text": "Some text"
+        }
+    ]
+}

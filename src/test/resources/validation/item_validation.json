@@ -1,0 +1,25 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "My Test Feed",
+    "items": [
+        {
+            "id": "http://moandjiezana.com/text",
+            "content_text": "Some text"
+        },
+        {
+            "id": "http://moandjiezana.com/html",
+            "content_html": "<h1>Some HTML</h1>"
+        },
+        {
+            "id": "http://moandjiezana.com/both",
+            "content_text": "Some text",
+            "content_html": "<h1>Some HTML</h1>"
+        },
+        {
+            "id": "http://moandjiezana.com/none"
+        },
+        {
+            "content_text": "Some text"
+        }
+    ]
+}
