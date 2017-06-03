@@ -1,7 +1,8 @@
 package jsonfeed4j;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -39,6 +40,6 @@ public class ItemsLevelTest {
   }
   
   private JsonFeed feed(String feed) {
-    return new GsonJsonFeedReader().read(this.getClass().getResourceAsStream("/itemsLevel/" + feed + ".json"));
+    return new GsonJsonFeedReader().read(new InputStreamReader(this.getClass().getResourceAsStream("/itemsLevel/" + feed + ".json")));
   }
 }

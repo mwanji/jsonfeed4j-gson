@@ -1,11 +1,8 @@
 package jsonfeed4j.gson;
 
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringReader;
 import java.lang.reflect.Type;
-import java.nio.file.Path;
 
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
@@ -32,16 +29,6 @@ public class GsonJsonFeedReader implements JsonFeedReader {
   @Override
   public JsonFeed read(String jsonFeed) {
     return read(new StringReader(jsonFeed));
-  }
-
-  @Override
-  public JsonFeed read(Path jsonFeed) {
-    return null;
-  }
-
-  @Override
-  public JsonFeed read(InputStream jsonFeed) {
-    return read(new InputStreamReader(jsonFeed));
   }
 
   @Override

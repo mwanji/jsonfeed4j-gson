@@ -1,20 +1,16 @@
 package jsonfeed4j;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.nio.file.Paths;
-import java.util.ArrayList;
+import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 
-import jsonfeed4j.JsonFeed;
-import jsonfeed4j.Versions;
 import jsonfeed4j.gson.GsonJsonFeedReader;
 
 public class TopLevelTest {
@@ -105,6 +101,6 @@ public class TopLevelTest {
   }
   
   private JsonFeed feed(String feed) {
-    return new GsonJsonFeedReader().read(this.getClass().getResourceAsStream("/topLevel/" + feed + ".json"));
+    return new GsonJsonFeedReader().read(new InputStreamReader(this.getClass().getResourceAsStream("/topLevel/" + feed + ".json")));
   }
 }
