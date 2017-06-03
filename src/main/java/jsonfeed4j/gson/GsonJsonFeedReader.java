@@ -3,6 +3,8 @@ package jsonfeed4j.gson;
 import java.io.Reader;
 import java.io.StringReader;
 import java.lang.reflect.Type;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
@@ -23,6 +25,7 @@ public class GsonJsonFeedReader implements JsonFeedReader {
   
   private final Gson gson = new GsonBuilder()
       .registerTypeAdapter(Versions.class, new VersionsDeserializer())
+      .registerTypeAdapter(ZonedDateTime.class, new ZonedDateTimeDeserializer())
       .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
       .create();
   
@@ -82,6 +85,14 @@ public class GsonJsonFeedReader implements JsonFeedReader {
     @Override
     public Versions deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
       return Versions.fromUrl(json.getAsString());
+    }
+  }
+  
+  private static class ZonedDateTimeDeserializer implements JsonDeserializer<ZonedDateTime> {
+    
+    @Override
+    public ZonedDateTime deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+      return ZonedDateTime.from(DateTimeFormatter.ISO_DATE_TIME.parse(json.getAsString()));
     }
   }
 }

@@ -1,0 +1,20 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "My Test Feed",
+    "items": [
+        {
+            "id": "http://moandjiezana.com/1",
+            "url": "http://moandjiezana.com/blog/1",
+            "external_url": "http://keziahezana.com",
+            "title": "My Item Title",
+            "content_html": "<h1>Some HTML</h1>",
+            "content_text": "Some text",
+            "summary": "My summary",
+            "image": "http://moandjiezana.com/image.jpg",
+            "banner_image": "http://moandjiezana.com/banner_image.jpg",
+            "date_published": "2010-02-07T14:04:00-05:00",
+            "date_modified": "2010-02-08T14:04:00-05:00",
+            "tags": ["rockets", "mermaids"]
+        }
+    ]
+}
