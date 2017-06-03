@@ -8,6 +8,9 @@
 	<description>Gson adapter for jsonfeed4j</description>
   <inceptionYear>2017-06-02</inceptionYear>
   <url>https://github.com/mwanji/jsonfeed4j-gson</url>
+  <properties>
+  	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
 	<dependencies>
 		<dependency>
 			<groupId>com.moandjiezana.jsonfeed</groupId>
