@@ -1,0 +1,22 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "My Test Feed",
+    "items": [],
+    "hubs": [
+        {
+            "type": "rssCloud",
+            "url": "http://moandjiezana.com/rssCloud"
+        },
+        {
+            "type": "WebSub"
+        },
+        {
+            "url": "http://moandjiezana.com/WebSub"
+        },
+        {
+            "type": "",
+            "url": "   "
+        },
+        {}
+    ]
+}

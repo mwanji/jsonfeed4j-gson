@@ -9,5 +9,11 @@
     "next_url": "http://moandjiezana.com/feed.json?page=2",
     "icon": "http://moandjiezana.com/icon.jpg",
     "favicon": "http://moandjiezana.com/favicon.jpg",
-    "expired": false
+    "expired": false,
+    "hubs": [
+        {
+            "type": "rssCloud",
+            "url": "http://moandjiezana.com/rssCloud"
+        }
+    ]
 }

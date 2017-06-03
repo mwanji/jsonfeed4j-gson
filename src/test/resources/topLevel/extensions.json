@@ -10,6 +10,18 @@
     "icon": "http://moandjiezana.com/icon.jpg",
     "favicon": "http://moandjiezana.com/favicon.jpg",
     "expired": false,
+    "hubs": [
+        {
+            "type": "rssCloud",
+            "url": "http://moandjiezana.com/rssCloud",
+            "_hub_extension": "rssc"
+        },
+        {
+            "type": "WebSub",
+            "url": "http://moandjiezana.com/WebSub",
+            "_ws_url": "http://moandjiezana.com/WebSub/url"
+        }
+    ],
     "_colors": {
         "background": "red",
         "text": "blue"

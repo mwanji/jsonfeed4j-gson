@@ -98,6 +98,21 @@ public class TopLevelTest {
   }
   
   @Test
+  public void should_get_hubs() throws Exception {
+    List<Hub> hubs = feed("extensions").getHubs();
+    Hub rssCloud = hubs.get(0);
+    Hub webSub = hubs.get(1);
+    
+    assertEquals("rssCloud", rssCloud.getType());
+    assertEquals("http://moandjiezana.com/rssCloud", rssCloud.getUrl());
+    assertEquals("rssc", rssCloud.getExtensions().get("hub_extension"));
+    
+    assertEquals("WebSub", webSub.getType());
+    assertEquals("http://moandjiezana.com/WebSub", webSub.getUrl());
+    assertEquals("http://moandjiezana.com/WebSub/url", webSub.getExtensions().get("ws_url"));
+  }
+  
+  @Test
   public void should_get_extensions() throws Exception {
     JsonFeed jsonFeed = feed("extensions");
     
