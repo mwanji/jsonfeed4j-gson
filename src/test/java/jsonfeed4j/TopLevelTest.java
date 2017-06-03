@@ -94,6 +94,7 @@ public class TopLevelTest {
     assertEquals("Moandji", author.getName());
     assertEquals("http://www.moandjiezana.com", author.getUrl());
     assertEquals("http://www.moandjiezana.com/avatar.jpg", author.getAvatar());
+    assertEquals("abc", author.getExtensions().get("plugin"));
   }
   
   @Test

@@ -5,6 +5,7 @@
     "author": {
         "name": "Moandji",
         "url": "http://www.moandjiezana.com",
-        "avatar": "http://www.moandjiezana.com/avatar.jpg"
+        "avatar": "http://www.moandjiezana.com/avatar.jpg",
+        "_plugin": "abc"
     }
 }
