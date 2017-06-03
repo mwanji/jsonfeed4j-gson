@@ -1,0 +1,16 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "My Test Feed",
+    "items": [
+        {
+            "id": "http://moandjiezana.com/1",
+            "content_text": "Some text",
+            "_colors": {
+                "background": "red",
+                "text": "blue"
+            },
+            "_users": ["alex", "brian", "cathy"],
+            "_pluginPath": "a/b/c"
+        }
+    ]
+}

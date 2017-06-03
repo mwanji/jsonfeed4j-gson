@@ -95,12 +95,12 @@ public class TopLevelTest {
   public void should_get_extensions() throws Exception {
     JsonFeed jsonFeed = feed("extensions");
     
-    Map<String, Object> colorsExtension = jsonFeed.getExtensionMap("colors");
-    List<Object> users = jsonFeed.getExtensionList("users");
+    Map<String, Object> colorsExtension = jsonFeed.getExtensions().getMap("colors");
+    List<Object> users = jsonFeed.getExtensions().getList("users");
     
     assertEquals("red", colorsExtension.get("background"));
     assertEquals("blue", colorsExtension.get("text"));
-    assertEquals("a/b/c", jsonFeed.getExtension("pluginPath"));
+    assertEquals("a/b/c", jsonFeed.getExtensions().get("pluginPath"));
     assertEquals(Arrays.asList("alex", "brian", "cathy"), users);
   }
   

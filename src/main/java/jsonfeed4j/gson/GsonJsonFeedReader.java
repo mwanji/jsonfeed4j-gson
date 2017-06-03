@@ -50,69 +50,47 @@ public class GsonJsonFeedReader implements JsonFeedReader {
   @Override
   public JsonFeed read(Reader jsonFeed) {
     
+    JsonObject root = new JsonParser().parse(jsonFeed).getAsJsonObject();
+    JsonObject output = populate(root);
+    
+    return gson.fromJson(output, JsonFeed.class);
+  }
+
+  private JsonObject populate(JsonObject root) {
     JsonObject output = new JsonObject();
     JsonObject extensions = new JsonObject();
     output.add("extensions", extensions);
-    JsonObject root = new JsonParser().parse(jsonFeed).getAsJsonObject();
+    
     for (String key : root.keySet()) {
+      JsonElement element = root.get(key);
       if (key.startsWith("_")) {
         extensions.add(key.substring(1), root.get(key));
+      } else if (element.isJsonObject()) {
+        JsonObject nestedObject = populate(element.getAsJsonObject());
+        output.add(key, nestedObject);
+      } else if (element.isJsonArray()) {
+        JsonArray nestedArray = populate(element.getAsJsonArray());
+        output.add(key, nestedArray);
       } else {
         output.add(key, root.get(key));
       }
     }
     
-    return gson.fromJson(output, JsonFeed.class);
+    return output;
+  }
+  
+  private JsonArray populate(JsonArray root) {
+    JsonArray output = new JsonArray();
+    for (JsonElement element : root) {
+      if (element.isJsonObject()) {
+        JsonObject nestedObject = populate(element.getAsJsonObject());
+        output.add(nestedObject);
+      } else {
+        output.add(element);
+      }
+    }
     
-//    try (JsonReader reader = new JsonReader(jsonFeed)) {
-//      JsonObject output = new JsonObject();
-//      String currentName = null;
-//      JsonArray currentArray = null;
-//      
-//      while (reader.hasNext()) {
-//        JsonToken jsonToken = reader.peek();
-//        switch (jsonToken) {
-//        case NAME:
-//          currentName = toCamelCase(reader.nextName());
-//          break;
-//        case BEGIN_ARRAY:
-//          reader.beginArray();
-//          currentArray = new JsonArray();
-//          break;
-//        case END_ARRAY:
-//          reader.endArray();
-//          output.add(currentName, currentArray);
-//        case STRING:
-//          output.add(currentName, new JsonPrimitive(reader.nextString()));
-//          break;
-//        case BOOLEAN:
-//          output.add(currentName, new JsonPrimitive(reader.nextBoolean()));
-//          break;
-//        case BEGIN_OBJECT:
-//          reader.beginObject();
-//          break;
-//        case END_DOCUMENT:
-//          break;
-//        case END_OBJECT:
-//          reader.endObject();
-//          break;
-//        case NULL:
-//          reader.nextNull();
-//          break;
-//        case NUMBER:
-//          break;
-//        default:
-//          break;
-//        }
-//      }
-//      System.out.println(output);
-//      return gson.fromJson(output, JsonFeed.class);
-//    } catch (IOException e) {
-//      throw new RuntimeException(e);
-//    }
-    
-    
-//    return gson.fromJson(jsonFeed, JsonFeed.class);
+    return output;
   }
 
   private static class VersionsDeserializer implements JsonDeserializer<Versions> {
