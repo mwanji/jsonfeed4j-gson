@@ -88,6 +88,15 @@ public class TopLevelTest {
   }
   
   @Test
+  public void should_get_full_author() throws Exception {
+    Author author = feed("author_full").getAuthor().get();
+    
+    assertEquals("Moandji", author.getName());
+    assertEquals("http://www.moandjiezana.com", author.getUrl());
+    assertEquals("http://www.moandjiezana.com/avatar.jpg", author.getAvatar());
+  }
+  
+  @Test
   public void should_get_extensions() throws Exception {
     JsonFeed jsonFeed = feed("extensions");
     

@@ -2,6 +2,8 @@ package jsonfeed4j;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.InputStreamReader;
 import java.time.format.DateTimeFormatter;
@@ -41,7 +43,8 @@ public class ItemsLevelTest {
     assertNotPresent(item.getBannerImage());
     assertNotPresent(item.getDatePublished());
     assertNotPresent(item.getDateModified());
-    assertNotPresent(item.getTags());
+    assertTrue(item.getTags().isEmpty(), "Item should not have any tags");
+    assertNotPresent(item.getAuthor());
   }
 
   @Test
@@ -110,7 +113,33 @@ public class ItemsLevelTest {
   public void should_read_tags() throws Exception {
     Item item = basicItem();
     
-    assertEquals(Arrays.asList("rockets", "mermaids"), item.getTags().get());
+    assertEquals(Arrays.asList("rockets", "mermaids"), item.getTags());
+  }
+  
+  @Test
+  public void should_read_full_item_author() throws Exception {
+    Author author = feed("author_full").getItems().get(0).getAuthor().get();
+    
+    assertEquals("Moandji", author.getName());
+    assertEquals("http://www.moandjiezana.com", author.getUrl());
+    assertEquals("http://www.moandjiezana.com/avatar.jpg", author.getAvatar());
+  }
+  
+  @Test
+  public void should_read_multiple_authors() throws Exception {
+    JsonFeed jsonFeed = feed("multiple_authors");
+    
+    assertEquals("Moandji", jsonFeed.getAuthor().get().getName());
+    assertEquals("Keziah", jsonFeed.getItems().get(0).getAuthor().get().getName());
+    assertEquals("Ayanda", jsonFeed.getItems().get(1).getAuthor().get().getName());
+  }
+  
+  @Test
+  public void optional_author_fields_should_not_be_present() throws Exception {
+    Author author = feed("multiple_authors").getItems().get(0).getAuthor().get();
+    
+    assertNull(author.getUrl());
+    assertNull(author.getAvatar());
   }
   
   private JsonFeed feed(String feed) {
@@ -126,6 +155,7 @@ public class ItemsLevelTest {
   }
   
   public static void main(String[] args) {
-    new ItemsLevelTest().basicItem();
+    Optional<Author> author = new ItemsLevelTest().feed("minimal").getAuthor();
+    System.out.println(author);
   }
 }

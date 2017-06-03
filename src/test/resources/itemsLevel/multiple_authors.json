@@ -1,0 +1,23 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "My Test Feed",
+    "author": {
+        "name": "Moandji"
+    },
+    "items": [
+        {
+            "id": "http://moandjiezana.com/1",
+            "content_text": "Some text",
+            "author": {
+                "name": "Keziah"
+            }
+        },
+        {
+            "id": "http://moandjiezana.com/2",
+            "content_text": "Some text 2",
+            "author": {
+                "name": "Ayanda"
+            }
+        }
+    ]
+}

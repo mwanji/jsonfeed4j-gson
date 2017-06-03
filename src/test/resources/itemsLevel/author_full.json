@@ -1,0 +1,15 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "My Test Feed",
+    "items": [
+        {
+            "id": "http://moandjiezana.com/1",
+            "content_text": "Some text",
+            "author": {
+                "name": "Moandji",
+                "url": "http://www.moandjiezana.com",
+                "avatar": "http://www.moandjiezana.com/avatar.jpg"
+            }
+        }
+    ]
+}
