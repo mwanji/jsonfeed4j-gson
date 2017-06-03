@@ -1,9 +1,9 @@
 package jsonfeed4j.gson;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.io.StringReader;
 import java.lang.reflect.Type;
 import java.nio.file.Path;
 
@@ -17,9 +17,6 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonParser;
-import com.google.gson.JsonPrimitive;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonToken;
 
 import jsonfeed4j.JsonFeed;
 import jsonfeed4j.JsonFeedReader;
@@ -34,7 +31,7 @@ public class GsonJsonFeedReader implements JsonFeedReader {
   
   @Override
   public JsonFeed read(String jsonFeed) {
-    return gson.fromJson(jsonFeed, JsonFeed.class);
+    return read(new StringReader(jsonFeed));
   }
 
   @Override
