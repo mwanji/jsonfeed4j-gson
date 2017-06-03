@@ -11,6 +11,14 @@
             },
             "_users": ["alex", "brian", "cathy"],
             "_pluginPath": "a/b/c"
+        },
+        {
+            "id": "http://moandjiezana.com/author_extension",
+            "content_text": "Some text",
+            "author": {
+                "name": "Moandji",
+                "_plugin": 1
+            }
         }
     ]
 }

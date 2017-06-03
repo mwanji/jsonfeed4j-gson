@@ -142,6 +142,14 @@ public class ItemsLevelTest {
     assertNull(author.getAvatar());
   }
   
+  @Test
+  public void should_read_author_extensions() throws Exception {
+    Extensions extensions = feed("extensions").getItems().get(1).getAuthor().get().getExtensions();
+    
+    
+    assertEquals(1.0, extensions.get("plugin"));
+  }
+  
   private JsonFeed feed(String feed) {
     return new GsonJsonFeedReader().read(new InputStreamReader(this.getClass().getResourceAsStream("/itemsLevel/" + feed + ".json")));
   }
@@ -152,10 +160,5 @@ public class ItemsLevelTest {
   
   private void assertNotPresent(Optional<?> optional) {
     assertFalse(optional.isPresent());
-  }
-  
-  public static void main(String[] args) {
-    Optional<Author> author = new ItemsLevelTest().feed("minimal").getAuthor();
-    System.out.println(author);
   }
 }
