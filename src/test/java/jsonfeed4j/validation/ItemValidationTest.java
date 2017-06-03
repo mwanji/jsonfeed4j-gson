@@ -66,8 +66,4 @@ public class ItemValidationTest {
   private JsonFeed read(String feed) {
     return new GsonJsonFeedReader().read(new InputStreamReader(this.getClass().getResourceAsStream("/validation/" + feed + ".json")));
   }
-  
-  public static void main(String[] args) throws Exception {
-    new AuthorValidationTest().should_fail_author_with_no_info();
-  }
 }
