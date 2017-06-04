@@ -15,7 +15,7 @@ public class AuthorValidationTest {
   public void should_fail_author_with_no_info() throws Exception {
     List<Item> items = read("author_validation").getItems();
     
-    Utils.assertInvalid(items.get(0).getAuthor().get());
+    TestUtils.assertInvalid(items.get(0).getAuthor().get());
   }
   
   private JsonFeed read(String feed) {

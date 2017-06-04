@@ -1,7 +1,7 @@
 package jsonfeed4j.validation;
 
-import static jsonfeed4j.validation.Utils.assertInvalid;
-import static jsonfeed4j.validation.Utils.assertValid;
+import static jsonfeed4j.validation.TestUtils.assertInvalid;
+import static jsonfeed4j.validation.TestUtils.assertValid;
 
 import java.io.InputStreamReader;
 import java.util.List;

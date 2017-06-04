@@ -9,7 +9,7 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 
-class Utils {
+class TestUtils {
   private static Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
   
   static void assertInvalid(Object o) {
@@ -24,5 +24,5 @@ class Utils {
     return validator.validate(o);
   }
 
-  private Utils() {}
+  private TestUtils() {}
 }
