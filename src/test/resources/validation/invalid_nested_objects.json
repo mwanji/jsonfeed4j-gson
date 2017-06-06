@@ -1,0 +1,13 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "Title",
+    "author": {},
+    "items": [
+        {
+            "content_text": "Some text"
+        }
+    ],
+    "hubs": [{
+        "type": "rssCloud"
+    }]
+}
