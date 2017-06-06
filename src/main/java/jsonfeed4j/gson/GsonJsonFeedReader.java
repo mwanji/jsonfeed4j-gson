@@ -109,7 +109,7 @@ public class GsonJsonFeedReader implements JsonFeedReader {
       try {
         return new MimeType(json.getAsString());
       } catch (MimeTypeParseException e) {
-        throw new JsonParseException(e);
+        return null;
       }
     }
   }

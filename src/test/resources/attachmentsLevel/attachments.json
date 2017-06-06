@@ -32,6 +32,26 @@
         {
             "id": "http://moandjiezana.com/2",
             "content_text": "Some text 2"
+        },
+        {
+            "id": "http://moandjiezana.com/invalid",
+            "content_text": "Some invalid attachments",
+            "attachments": [
+                {
+                    "url": "http://moandjiezana.com/1/attachments/1",
+                    "mime_type": "invalid"
+                },
+                {
+                    "url": "",
+                    "mime_type": "audio/mpeg"
+                },
+                {
+                    "url": "http://moandjiezana.com/1/attachments/2"
+                },
+                {
+                    "mime_type": "audio/mpeg"
+                }
+            ]
         }
     ]
 }
