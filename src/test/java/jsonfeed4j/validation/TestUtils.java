@@ -11,6 +11,8 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 
+import org.junit.jupiter.api.Assertions;
+
 class TestUtils {
   private static Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
   
@@ -19,7 +21,13 @@ class TestUtils {
   }
   
   static void assertInvalidProperty(String path, Object o, Class<?>... groups) {
-    ConstraintViolation<Object> constraintViolation = validator.validate(o, groups).iterator().next();
+    Set<ConstraintViolation<Object>> constraintViolations = validator.validate(o, groups);
+    if (constraintViolations.isEmpty()) {
+      Assertions.fail("No constraint violation on field " + path);
+      return;
+    }
+    
+    ConstraintViolation<Object> constraintViolation = constraintViolations.iterator().next();
     assertEquals(path, constraintViolation.getPropertyPath().toString());
   }
 
