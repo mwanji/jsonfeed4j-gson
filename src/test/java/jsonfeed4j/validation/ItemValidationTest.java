@@ -1,6 +1,6 @@
 package jsonfeed4j.validation;
 
-import static jsonfeed4j.validation.TestUtils.assertInvalid;
+import static jsonfeed4j.validation.TestUtils.assertInvalidProperty;
 import static jsonfeed4j.validation.TestUtils.assertValid;
 
 import java.io.InputStreamReader;
@@ -37,23 +37,22 @@ public class ItemValidationTest {
 
   @Test
   public void should_fail_with_no_content() throws Exception {
-    List<Item> items = read("item_validation").getItems();
-    
-    assertInvalid(items.get(3));
+    Item item = read("item_validation").getItems().get(3);
+    assertInvalidProperty("", item);
   }
   
   @Test
   public void should_fail_with_no_id() throws Exception {
-    List<Item> items = read("item_validation").getItems();
+    Item item = read("item_validation").getItems().get(4);
     
-    assertInvalid(items.get(4));
+    assertInvalidProperty("id", item);
   }
   
   @Test
   public void should_fail_with_invalid_author() throws Exception {
     Item item = read("author_validation").getItems().get(0);
     
-    assertInvalid(item);
+    assertInvalidProperty("author", item);
   }
   
   @Test

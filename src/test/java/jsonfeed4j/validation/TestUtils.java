@@ -1,8 +1,10 @@
 package jsonfeed4j.validation;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Optional;
 import java.util.Set;
 
 import javax.validation.ConstraintViolation;
@@ -12,12 +14,21 @@ import javax.validation.Validator;
 class TestUtils {
   private static Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
   
-  static void assertInvalid(Object o) {
-    assertFalse(validator.validate(o).isEmpty(), "Object was not INVALID");
+  static void assertInvalid(Object o, Class<?>... groups) {
+    assertFalse(validator.validate(o, groups).isEmpty(), "Object was not INVALID");
+  }
+  
+  static void assertInvalidProperty(String path, Object o, Class<?>... groups) {
+    ConstraintViolation<Object> constraintViolation = validator.validate(o, groups).iterator().next();
+    assertEquals(path, constraintViolation.getPropertyPath().toString());
   }
 
-  static void assertValid(Object o) {
-    assertTrue(validator.validate(o).isEmpty(), "Object was not valid");
+  static void assertValid(Object o, Class<?>... groups) {
+    assertTrue(validator.validate(o, groups).isEmpty(), "Object was not valid");
+  }
+  
+  static void assertEmpty(Optional<?> optional) {
+    assertFalse(optional.isPresent());
   }
   
   static Set<ConstraintViolation<Object>> validate(Object o) {
