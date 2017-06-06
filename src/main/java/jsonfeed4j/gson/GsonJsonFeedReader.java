@@ -3,6 +3,7 @@ package jsonfeed4j.gson;
 import java.io.Reader;
 import java.io.StringReader;
 import java.lang.reflect.Type;
+import java.time.DateTimeException;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -94,7 +95,11 @@ public class GsonJsonFeedReader implements JsonFeedReader {
   private static class ZonedDateTimeDeserializer implements JsonDeserializer<ZonedDateTime> {
     @Override
     public ZonedDateTime deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
-      return ZonedDateTime.from(DateTimeFormatter.ISO_DATE_TIME.parse(json.getAsString()));
+      try {
+        return ZonedDateTime.from(DateTimeFormatter.ISO_DATE_TIME.parse(json.getAsString()));
+      } catch (DateTimeException e) {
+        return null;
+      }
     }
   }
   
@@ -104,7 +109,7 @@ public class GsonJsonFeedReader implements JsonFeedReader {
       try {
         return new MimeType(json.getAsString());
       } catch (MimeTypeParseException e) {
-        throw new RuntimeException(e);
+        throw new JsonParseException(e);
       }
     }
   }

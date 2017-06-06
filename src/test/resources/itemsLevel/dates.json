@@ -1,0 +1,11 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "My Test Feed",
+    "items": [
+        {
+            "id": "http://moandjiezana.com/1",
+            "date_published": "2010-02-07",
+            "date_modified": "2010-02-08T140:04:00"
+        }
+    ]
+}

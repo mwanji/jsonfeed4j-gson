@@ -103,6 +103,14 @@ public class ItemsLevelTest {
   }  
   
   @Test
+  public void should_return_empty_for_invalid_date() throws Exception {
+    Item item = feed("dates").getItems().get(0);
+    
+    assertNull(item.getDatePublished().orElse(null));
+    assertNull(item.getDateModified().orElse(null));
+  }  
+  
+  @Test
   public void should_read_date_modified() throws Exception {
     Item item = basicItem();
     
