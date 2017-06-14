@@ -1,5 +1,6 @@
 package jsonfeed4j;
 
+import static jsonfeed4j.validation.TestUtils.assertEmpty;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -26,9 +27,9 @@ public class ItemsLevelTest {
     
     assertEquals(2, items.size());
     assertEquals("http://moandjiezana.com/1", items.get(0).getId());
-    assertEquals("Some text", items.get(0).getContentText());
+    assertEquals("Some text", items.get(0).getContentText().get());
     assertEquals("http://moandjiezana.com/2", items.get(1).getId());
-    assertEquals("Some text 2", items.get(1).getContentText());
+    assertEquals("Some text 2", items.get(1).getContentText().get());
   }
   
   @Test
@@ -71,7 +72,7 @@ public class ItemsLevelTest {
   public void should_read_content_html() throws Exception {
     Item item = basicItem();
     
-    assertEquals("<h1>Some HTML</h1>", item.getContentHtml());
+    assertEquals("<h1>Some HTML</h1>", item.getContentHtml().get());
   }
   
   @Test
@@ -128,26 +129,26 @@ public class ItemsLevelTest {
   public void should_read_full_item_author() throws Exception {
     Author author = feed("author_full").getItems().get(0).getAuthor().get();
     
-    assertEquals("Moandji", author.getName());
-    assertEquals("http://www.moandjiezana.com", author.getUrl());
-    assertEquals("http://www.moandjiezana.com/avatar.jpg", author.getAvatar());
+    assertEquals("Moandji", author.getName().get());
+    assertEquals("http://www.moandjiezana.com", author.getUrl().get());
+    assertEquals("http://www.moandjiezana.com/avatar.jpg", author.getAvatar().get());
   }
   
   @Test
   public void should_read_multiple_authors() throws Exception {
     JsonFeed jsonFeed = feed("multiple_authors");
     
-    assertEquals("Moandji", jsonFeed.getAuthor().get().getName());
-    assertEquals("Keziah", jsonFeed.getItems().get(0).getAuthor().get().getName());
-    assertEquals("Ayanda", jsonFeed.getItems().get(1).getAuthor().get().getName());
+    assertEquals("Moandji", jsonFeed.getAuthor().get().getName().get());
+    assertEquals("Keziah", jsonFeed.getItems().get(0).getAuthor().get().getName().get());
+    assertEquals("Ayanda", jsonFeed.getItems().get(1).getAuthor().get().getName().get());
   }
   
   @Test
   public void optional_author_fields_should_not_be_present() throws Exception {
     Author author = feed("multiple_authors").getItems().get(0).getAuthor().get();
     
-    assertNull(author.getUrl());
-    assertNull(author.getAvatar());
+    assertEmpty(author.getUrl());
+    assertEmpty(author.getAvatar());
   }
   
   @Test

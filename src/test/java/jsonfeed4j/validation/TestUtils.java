@@ -13,7 +13,7 @@ import javax.validation.Validator;
 
 import org.junit.jupiter.api.Assertions;
 
-class TestUtils {
+public class TestUtils {
   private static Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
   
   static void assertInvalid(Object o, Class<?>... groups) {
@@ -35,7 +35,7 @@ class TestUtils {
     assertTrue(validator.validate(o, groups).isEmpty(), "Object was not valid");
   }
   
-  static void assertEmpty(Optional<?> optional) {
+  public static void assertEmpty(Optional<?> optional) {
     assertFalse(optional.isPresent());
   }
   
